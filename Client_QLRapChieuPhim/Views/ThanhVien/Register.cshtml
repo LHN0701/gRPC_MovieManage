@@ -1,0 +1,81 @@
+﻿@model ThanhVienModel.Output.ThongTinThanhVien
+@{
+    ViewData["Title"] = "Register";
+}
+<style>
+    .register-info {
+        border: 1px solid;
+        box-shadow: 5px 6px #888888;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+        .register-info .page-heading {
+            margin-top: 10px !important;
+        }
+
+        .register-info .require {
+            color: #e71a0f;
+        }
+
+    .validation-summary-errors ul {
+        list-style: square;
+        margin: 0 0 0 15px;
+        padding: 0px;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
+        <div class="register-info">
+            <form asp-area="" asp-controller="ThanhVien" asp-action="Register" method="post">
+                <h2 class="page-heading">Đăng ký thành viên</h2>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="Email"></label><span class="require">*</span>
+                    <input asp-for="Email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="MatKhau"></label><span class="require">*</span>
+                    <input asp-for="MatKhau" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="XacNhanMatKhau"></label><span class="require">*</span>
+                    <input asp-for="XacNhanMatKhau" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="HoTen"></label><span class="require">*</span>
+                    <input asp-for="HoTen" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="NgaySinh"></label><span class="require">*</span>
+                    <input asp-for="NgaySinh" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="GioiTinh"></label>
+                    <input asp-for="GioiTinh" style="appearance: auto;" /> <span> Nam?</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DienThoai"></label><span class="require">*</span>
+                    <input asp-for="DienThoai" class="form-control" />
+                </div>
+                @if (ViewData["ThongBaoDangKy"] != null)
+                {
+                    <div class="form-group">
+                        <div class="text-danger">
+                            <ul><li>@ViewData["ThongBaoDangKy"]</li></ul>
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

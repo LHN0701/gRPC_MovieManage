@@ -1,0 +1,35 @@
+﻿@if (!User.Identity.IsAuthenticated)
+{
+    <div class="auth auth--home" style="right: 50px;">
+        <div class="auth__show" style="color: #fff; padding-left: 10px; min-width: 150px;">
+            <a href="#" class="login-window" style="color: #fff;">Đăng nhập</a>
+            <span> / </span>
+            <a asp-area="" asp-controller="ThanhVien" asp-action="Register"
+               class="btn-register" style="color: #fff;">Đăng ký</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="auth auth--home">
+        <div class="auth__show" style="padding-left: 10px;">
+            <span class="auth__image">
+                <i class="fa fa-user-o" aria-hidden="true"
+                   style="color: #ffffff;font-size: 18px;"></i>
+            </span>
+        </div>
+        <a href="#" class="btn btn--sign btn--singin" style="left: 20px;">
+            @User.Claims.FirstOrDefault(x => x.Type == "HOTEN").Value
+        </a>
+        <ul class="auth__function">
+            <li>
+                <a asp-area="" asp-controller="ThanhVien" asp-action="ChangePassword"
+                   class="auth__function-item">Đổi mật khẩu</a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="ThanhVien" asp-action="Logout"
+                   class="auth__function-item">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+}

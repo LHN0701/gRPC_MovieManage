@@ -1,0 +1,201 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "gRPC_QLRapChieuPhim";
+
+package QLRapChieuPhim;
+
+service	RapChieuPhim {
+	rpc DanhSachTheLoai(Input.Empty) returns (Output.TheLoaiPhims);
+    rpc DanhSachXepHangPhim(Input.Empty) returns (Output.XepHangPhims);
+    rpc DanhSachPhimTheoTheLoai(Input.PhimTheoTheLoai) returns (Output.Phims);
+    rpc XemThongTinPhim(Input.Phim) returns (Output.Phim);
+    rpc ThemPhimMoi(Input.Phim) returns (Output.ThongBao);
+    rpc CapNhatPhim(Input.Phim) returns (Output.ThongBao);
+    rpc TimPhim(Input.TimPhim) returns (Output.Phims);
+    rpc DanhSachPhimDangChieu (Input.Empty) returns (Output.Phims);
+    rpc DanhSachPhimSapChieu (Input.Empty) returns (Output.Phims);
+    rpc DanhSachSuatChieu (Input.Empty) returns (Output.SuatChieus);
+    rpc XemThongTinSuatChieu(Input.SuatChieu) returns (Output.SuatChieu);
+    rpc ThemSuatChieuMoi(Input.SuatChieu) returns (Output.ThongBao);
+    rpc CapNhatSuatChieu(Input.SuatChieu) returns (Output.ThongBao);
+    rpc DangNhap(Input.ThongTinDangNhap) returns (Output.ThanhVien);
+    rpc DangKyThanhVien(Input.ThongTinDangKy) returns (Output.ThongBao);
+    rpc KichHoatTaiKhoan(Input.ThongTinDangKy) returns (Output.ThongBao);
+    rpc ThayDoiMatKhau(Input.ThongTinThayDoiMatKhau) returns (Output.ThongBao);
+    rpc DanhSachSlideBanner(Input.Empty) returns (Output.SlideBanners);
+    rpc XemThongTinSlideBanner(Input.SlideBanner) returns (Output.SlideBanner);
+    rpc ThemSlideBannerMoi(Input.SlideBanner) returns (Output.ThongBao);
+    rpc CapNhatSlideBanner(Input.SlideBanner) returns (Output.ThongBao);
+    rpc XoaSlideBanner(Input.SlideBanner) returns (Output.ThongBao);
+    rpc NhanVienDangNhap(Input.ThongTinDangNhap) returns (Output.NhanVien);
+    rpc NhanVienThayDoiMatKhau(Input.ThongTinThayDoiMatKhau) returns (Output.ThongBao);
+}
+
+message Input {
+    message Empty {
+    }
+    message TheLoaiPhim {
+	    int32 Id =1;
+        string Ten = 2;
+    }
+    message XepHangPhim {
+        int32 Id = 1;
+        string KyHieu = 2;
+        string Ten = 3;
+    }
+    message Phim {
+        int32 Id = 1;
+        string TenPhim = 2;
+        string TenGoc = 3;
+        int32 ThoiLuong = 4;
+        string DaoDien = 5;
+        string DienVien = 6;
+        google.protobuf.Timestamp NgayKhoiChieu = 7;
+        string NoiDung = 8;
+        string NuocSanXuat = 9;
+        string NhaSanXuat = 10;
+        string Poster = 11;
+        string DanhSachTheLoaiId = 12;
+        string NgonNgu = 13;
+        int32 XepHangPhimId = 14;
+        string Trailer = 15;
+        repeated TheLoaiPhim TheLoais = 16;
+        XepHangPhim XepHang = 17;
+    }
+    message TimPhim {
+        string KeyWord = 1;
+        int32 PageSize = 2;
+        int32 CurrentPage = 3;
+    }
+    message PhimTheoTheLoai {
+        int32 IdTheLoai = 1;
+        int32 PageSize = 2;
+        int32 CurrentPage = 3;
+    }
+    message SuatChieu {
+        int32 Id = 1;
+        string TenSuatChieu = 2;
+        string GioBatDau = 3;
+        string GioKetThuc = 4;
+    }
+    message ThongTinDangNhap{
+        string TenDangNhap = 1;
+        string MatKhau = 2;
+    }
+    message ThongTinDangKy{
+        int32 Id = 1;
+        string HoTen = 2;
+        bool GioiTinh = 3;
+        google.protobuf.Timestamp NgaySinh = 4;
+        string Email = 5;
+        string DienThoai = 6;
+        string MatKhau = 7;
+        bool KichHoat = 8;
+    }
+    message ThongTinThayDoiMatKhau {
+        int32 Id = 1;
+        string Email = 2;
+        string MatKhauCu = 3;
+        string MatKhauMoi = 4;
+    }
+    message SlideBanner{
+        int32 Id = 1;
+        string Ten = 2;
+        string Hinh = 3;
+        string LienKet = 4;
+        bool KichHoat = 5;
+    }
+}
+
+message Output {
+    message ThongBao {
+        int32 Maso = 1;
+        string NoiDung = 2;
+    }
+    message TheLoaiPhim {
+	    int32 Id =1;
+        string Ten = 2;
+    }
+    message TheLoaiPhims {
+	    repeated TheLoaiPhim items = 1;
+    }
+    message Phim {
+	    int32 Id = 1;
+        string TenPhim = 2;
+        string TenGoc = 3;
+        int32 ThoiLuong = 4;
+        string DaoDien = 5;
+        string DienVien = 6;
+        google.protobuf.Timestamp NgayKhoiChieu = 7;
+        string NoiDung = 8;
+        string NuocSanXuat = 9;
+        string NhaSanXuat = 10;
+        string Poster = 11;
+        string DanhSachTheLoaiId = 12;
+        string NgonNgu = 13;
+        int32 XepHangPhimId = 14;
+        string Trailer = 15;
+        repeated TheLoaiPhim TheLoais = 16;
+        XepHangPhim XepHang = 17;
+    }
+    message Phims {
+	    repeated Phim items = 1;
+        int32 PageCount = 2;
+        TheLoaiPhim TheLoaiHienHanh = 3;
+        string ThongBao = 4;
+    }
+    message XepHangPhim {
+        int32 Id = 1;
+        string KyHieu = 2;
+        string Ten = 3;
+    }
+    message XepHangPhims {
+        repeated XepHangPhim items = 1;
+    }
+    message SuatChieu {
+        int32 Id = 1;
+        string TenSuatChieu = 2;
+        string GioBatDau = 3;
+        string GioKetThuc = 4;
+        string ThongBao = 5;
+    }
+    message SuatChieus {
+        repeated SuatChieu items = 1;
+    }
+    message ThanhVien{
+        int32 Id = 1;
+        string HoTen = 2;
+        bool GioiTinh = 3;
+        google.protobuf.Timestamp NgaySinh = 4;
+        string Email = 5;
+        string DienThoai = 6;
+        string MatKhau = 7;
+        bool KichHoat = 8;
+        string ThongBao = 9;
+    }
+    message NhanVien{
+        int32 Id = 1;
+        string HoTen = 2;
+        bool GioiTinh = 3;
+        google.protobuf.Timestamp NgaySinh = 4;
+        string DiaChi = 5;
+        string Cmnd = 6;
+        string MatKhau = 7;
+        int32 RapId = 8;
+        string QuyenHan = 9;
+        string ThongBao = 10;
+    }
+    message SlideBanner {
+        int32 Id = 1;
+        string Ten = 2;
+        string Hinh = 3;
+        string LienKet = 4;
+        bool KichHoat = 5;
+        string ThongBao = 6;
+    }
+    message SlideBanners {
+        repeated SlideBanner items = 1;
+    }
+}

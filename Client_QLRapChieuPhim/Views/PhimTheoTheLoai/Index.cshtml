@@ -1,0 +1,27 @@
+﻿@model IEnumerable<gRPC_QLRapChieuPhim.Output.Types.TheLoaiPhim>
+
+@{
+    ViewData["Title"] = "Danh sách phim theo thể loại";
+}
+<h2>Danh sách phim theo thể loại</h2>
+<form asp-controller="PhimTheoTheLoai" asp-action="Index" method="post">
+    <div class="form-horizontal">
+        <h4>Chọn thể loại để xuất ra danh sách phim</h4>
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">Chọn thể loại:</label>
+            <div class="col-md-10">
+                <select class="form-control" id="idtheloai" name="idtheloai">
+                    <option value="0">Tất cả thể loại</option>
+                    @foreach (var tl in Model)
+                    {
+                        <option value="@tl.Id">@tl.Ten</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <input class="btn btn-success" type="submit" value="Liệt kê danh sách phim" />
+        </div>
+    </div>
+</form>

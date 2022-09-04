@@ -1,0 +1,24 @@
+﻿@model HomeFrontendModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Slider -->
+<div class="container-fluid bannercontainer ">
+    <!-- the ID here will be used in the JavaScript below to initialize the slider -->
+    @if (Model.DanhSachBanner != null && Model.DanhSachBanner.Count > 0)
+    {
+        <div id="rev_slider_1" class="banner rev_slider" style="display:none">
+            <!-- BEGIN SLIDES LIST -->
+            <ul>
+                @foreach (var slide in Model.DanhSachBanner)
+                {
+                    <li data-transition="fade" class="slide" data-title='@slide.Ten'>
+                        <img class="rev-slidebg" alt='' src="@slide.Hinh">
+                    </li>
+                }
+            </ul><!-- END SLIDES LIST -->
+        </div><!-- END SLIDER CONTAINER -->
+    }
+</div><!-- END SLIDER CONTAINER WRAPPER -->
+<!--end slider -->

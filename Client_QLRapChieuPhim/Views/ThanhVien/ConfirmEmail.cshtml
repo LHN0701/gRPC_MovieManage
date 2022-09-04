@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Xác nhận đăng ký thành viên";
+}
+
+<header>
+    <h1 class="text-success">@ViewData["Title"]!</h1>
+    @if (ViewData["ThongBaoKichHoat"].ToString() == "thanhcong")
+    {
+        <p class="text-success">Thông tin đăng ký thành viên đã xác nhận thành công.</p>
+        <p class="text-success">
+            Ngay bây giờ bạn có thể
+            <strong><a asp-controller="ThanhVien" asp-action="Login">Đăng nhập</a></strong>
+            để mua vé xem phim.
+        </p>
+    }
+    else
+    {
+        <p class="text-danger">Không xác nhận được thông tin đăng ký thành viên.</p>
+        <p class="text-danger">Vui lòng liên hệ với bộ phận chăm sóc khách hàng để được hỗ trợ.</p>
+    }
+</header>

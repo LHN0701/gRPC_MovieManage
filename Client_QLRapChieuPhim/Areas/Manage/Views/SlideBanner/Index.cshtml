@@ -1,0 +1,111 @@
+﻿@model List<SlideBannerModel.Output.ThongTinSlideBanner>
+@{
+    ViewData["Title"] = "Danh sách Slide Banner";
+}
+<style>
+    td > span {
+        padding: 5px;
+        display: inline-block;
+    }
+
+    @@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+        tr {
+            margin: 0 0 1rem 0;
+        }
+
+            tr:nth-child(odd) {
+                background: #ccc;
+            }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 0;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                padding-top: 5px;
+                white-space: nowrap;
+                content: attr(data-title);
+            }
+    }
+</style>
+<h2 class="page-heading">Danh Sách Slide Banner</h2>
+<div class="select-area">
+    <a asp-area="Manage" asp-controller="SlideBanner" asp-action="ThemSlideBanner" class="btn btn--success" style="color: #fff; float: right;">
+        <i class="fa fa-plus-square" aria-hidden="true" style="font-size: 16px;"></i> Thêm Slide Banner mới
+    </a>
+    <div class="clearfix"></div>
+</div>
+@if (Model.Count > 0)
+{
+    var stt = 0;
+    <table class="table-hover table-striped">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Hình</th>
+                <th>Liên kết</th>
+                <th>Kích hoạt</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sl in Model)
+            {
+                stt++;
+                <tr>
+                    <td data-title="STT"><span>@stt</span></td>
+                    <td data-title="Hình"><span>@sl.Hinh</span></td>
+                    <td data-title="Liên kết"><span>@sl.LienKet</span></td>
+                    <td data-title="Kích hoạt"><span>@sl.KichHoat</span></td>
+                    <td data-title="">
+                        <span>
+                            <a asp-area="Manage" asp-controller="SlideBanner" asp-action="CapNhatSlideBanner" asp-route-id="@sl.Id" title="Cập nhật Slide Banner">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 16px;"></i>
+                            </a>
+                        </span>
+                        <span>
+                            <a asp-area="Manage" asp-controller="SlideBanner" asp-action="XoaSlideBanner" asp-route-id="@sl.Id" onclick="return XacNhanXoa(event);" title="Xóa Slide Banner">
+                                <i class="fa fa-trash" aria-hidden="true" style="font-size: 16px;"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div style="font-size: 1.5em; color: #ff0000;">Chưa có Slide Banner</div>
+}
+
+<script>
+    function XacNhanXoa(event) {
+        if (!confirm("Bạn có muốn xóa Banner này không?")) {
+            event.preventDefault();
+            return false;
+        }
+    }
+</script>

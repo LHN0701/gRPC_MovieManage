@@ -1,0 +1,5 @@
+﻿<h1>Danh sách phim đã xem trên trang web</h1>
+@for (int i = 1; i <= Count.count; i++)
+{
+    <p>@ViewData[$"tenphim{i}"]</p>
+}

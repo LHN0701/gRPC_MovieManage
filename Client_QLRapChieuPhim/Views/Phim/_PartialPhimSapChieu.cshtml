@@ -1,0 +1,61 @@
+﻿@model List<Client_QLRapChieuPhim.Models.PhimModel.Output.ThongTinPhim>
+
+<div class="category-products">
+    <ul class="products-grid list-movies">
+        @foreach (var phim in Model)
+        {
+            <li class="film-lists item last">
+                <span class="nmovie-rating nmovie-rating-@phim.XepHangPhim.KyHieu.ToLower()">
+                    @phim.XepHangPhim.KyHieu
+                </span>
+                <div class="product-images">
+                    <a href="/Phim/ThongTinPhim?id=@phim.Id" title="@phim.TenPhim" class="product-image">
+                        <img src="data:image/png;base64, @phim.Poster" alt="@phim.TenPhim" />
+                    </a>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-name">
+                        <a href="/Phim/ThongTinPhim?id=@phim.Id" title="@phim.TenPhim">
+                            @phim.TenPhim
+                        </a>
+                    </h2>
+                    <div class="movie-info">
+                        <span class="info-bold">Thể loại: </span>
+                        <span class="info-normal">
+                            @for (int i = 0; i < phim.DanhSachTheLoai.Count; i++)
+                            {
+                                if (i > 0)
+                                {
+                                    <span>,</span><a href="#">@phim.DanhSachTheLoai[i].Ten</a>
+                                }
+                                else
+                                {
+                                    <a href="#">@phim.DanhSachTheLoai[i].Ten</a>
+                                }
+                            }
+                        </span>
+                    </div>
+                    <div class="movie-info">
+                        <span class="info-bold">Thời lượng: </span>
+                        <span class="info-normal">
+                            @(phim.ThoiLuong >= 0 ? phim.ThoiLuong.ToString() + " phút" : "")
+                        </span>
+                    </div>
+                    <div class="movie-info">
+                        <span class="info-bold">Khởi chiếu: </span>
+                        <span class="info-normal">
+                            @phim.NgayKhoiChieu.ToString("dd/MM/yyyy")
+                        </span>
+                    </div>
+                </div>
+                <ul class="add-to-links">
+                    <li>
+                        <button type="button" title="Trailer" class="button btn-trailer">
+                            <span class="trailer-icon"><span>Trailer</span></span>
+                        </button>
+                    </li>
+                </ul>
+            </li>
+        }
+    </ul>
+</div>

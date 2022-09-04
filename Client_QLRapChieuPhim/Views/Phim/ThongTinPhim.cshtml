@@ -1,0 +1,82 @@
+﻿@model Client_QLRapChieuPhim.Models.PhimModel.Output.ThongTinPhim
+@{
+    ViewData["Title"] = "Thông tin phim";
+}
+<style>
+    .navbar ul.navbar-nav a.nav-link {
+        font-size: 16px;
+    }
+
+    main {
+        padding-top: 55px;
+    }
+
+    .movie {
+        border: 1px solid;
+        box-shadow: 5px 6px #888888;
+        padding: 20px;
+    }
+
+        .movie .page-heading {
+            margin-top: 10px !important;
+        }
+
+    .movie__info .movie__time {
+        font-size: 14px;
+        font-weight: bold;
+    }
+</style>
+<section class="container">
+    <div class="col-sm-12">
+        <div class="movie">
+            @if (Model != null && Model.Id > 0)
+            {
+                <h2 class="page-heading">@Model.TenPhim</h2>
+                <div class="movie__info">
+                    <div class="col-sm-4 col-md-3 movie-mobile" style="width: auto;">
+                        <div class="movie__images">
+                            <img alt='' src="data:image/png;base64, @Model.Poster">
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-md-9">
+                        <p class="movie__time">Thời lượng: @Model.ThoiLuong</p>
+                        <p class="movie__option"><strong>Nước sản xuất: @Model.NuocSanXuat</strong><a href="#"> </a></p>
+                        <p class="movie__option"><strong>Hãng sản xuất: @Model.NuocSanXuat</strong><a href="#"> </a></p>
+                        <p class="movie__option">
+                            <strong>Thể loại: </strong>
+                            @for (int i = 0; i < Model.DanhSachTheLoai.Count(); i++)
+                            {
+                                var tl = Model.DanhSachTheLoai[i];
+                                if (i > 0)
+                                {
+                                    <span>, </span><a href="#">@tl.Ten</a>
+                                }
+                                else
+                                {
+                                    <a href="#">@tl.Ten</a>
+                                }
+                            }
+                        </p>
+                        <p class="movie__option"><strong>Ngày khởi chiếu: @Model.NgayKhoiChieu</strong> </p>
+                        <p class="movie__option"><strong>Đạo diễn: @Model.DaoDien</strong><a href="#"> </a></p>
+                        <p class="movie__option"><strong>Diễn viên: @Model.DienVien</strong><a href="#"> </a></p>
+                        <p class="movie__option"><strong>@Model.XepHangPhim.Ten</strong></p>
+
+                        <div class="movie__btns movie__btns--full">
+                            <a href="#" class="btn btn-md btn--warning">Đặt vé</a>
+                            <a href="#" class="watch-trailer">Trailer</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <p></p>
+                <p class="movie__describe">@Model.NoiDung</p>
+            }
+            else
+            {
+                <h3>Thông tin phim không hợp lệ</h3>
+            }
+        </div>
+    </div>
+</section>

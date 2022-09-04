@@ -1,0 +1,270 @@
+﻿@model PhimModel.Output.CapNhatPhim
+@{
+    ViewData["Title"] = "Cập nhật thông tin phim";
+}
+
+<style>
+    .navbar ul.navbar-nav a.nav-link {
+        font-size: 16px;
+    }
+
+    .form-group > label {
+        margin-bottom: 0;
+        margin-top: .5rem;
+    }
+
+    input, textarea {
+        -webkit-appearance: auto;
+    }
+
+    .form-check {
+        margin-bottom: .5rem;
+    }
+
+    .form-check-input {
+        margin-top: .15rem;
+    }
+
+    .movie__info .img-thumbnail {
+        width: 180px;
+        height: 260px;
+        cursor: pointer;
+    }
+
+    div#dialog-message p {
+        margin: 0;
+    }
+
+    main {
+        padding-top: 55px;
+    }
+
+    .movie {
+        border: 1px solid;
+        box-shadow: 5px 6px #888888;
+        padding: 20px;
+    }
+
+        .movie .page-heading {
+            margin-top: 15px;
+        }
+
+    @@media (min-width: 768px) {
+        .form-group > label {
+            text-align: right;
+        }
+
+        .movie__info .poster {
+            float: left;
+            width: 200px;
+        }
+    }
+
+    @@media (max-width: 767px) {
+        .movie__info .poster {
+            width: 100%;
+        }
+    }
+</style>
+<!-- Main content -->
+<section class="container">
+    <div class="col-md-12">
+        <div class="movie">
+            <h2 class="page-heading">Cập nhật thông tin phim</h2>
+
+            <div class="movie__info">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group poster text-center">
+                        <div class="">
+                            <img src="data:image/png;base64, @Model.Poster" class="img-thumbnail" id="imgThumbnail">
+                            <span asp-validation-for="Poster" class="text-danger"></span>
+                        </div>
+                        <div class="" style="margin-top: 10px;">
+                            <input type="button" value="Chọn hình" class="btn btn-info" id="chonHinh" />
+                            <input type="file" name="inputFile" id="inputFile" accept="image/*" style="display: none;" />
+                            <input type="hidden" asp-for="Poster" />
+                            <input type="hidden" asp-for="Id" />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="TenPhim" class="col-md-3">Tên phim</label>
+                        <div class="col-md-9">
+                            <input asp-for="TenPhim" class="form-control" />
+                            <span asp-validation-for="TenPhim" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="TenGoc" class="col-md-3">Tên gốc</label>
+                        <div class="col-md-9">
+                            <input asp-for="TenGoc" class="form-control" />
+                            <span asp-validation-for="TenGoc" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="NuocSanXuat" class="col-md-3">Nước sản xuất</label>
+                        <div class="col-md-9">
+                            <input asp-for="NuocSanXuat" class="form-control" />
+                            <span asp-validation-for="NuocSanXuat" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="NhaSanXuat" class="col-md-3">Nhà sản xuất</label>
+                        <div class="col-md-9">
+                            <input asp-for="NhaSanXuat" class="form-control" />
+                            <span asp-validation-for="NhaSanXuat" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="NgayKhoiChieu" class="col-md-3">Ngày khởi chiếu</label>
+                        <div class="col-md-3">
+                            <input type="date" asp-for="NgayKhoiChieu" class="form-control" style="padding-left: 5px; padding-right: 2px;" />
+                            <span asp-validation-for="NgayKhoiChieu" class="text-danger"></span>
+                        </div>
+                        <label asp-for="ThoiLuong" class="col-md-3">Thời lượng (phút)</label>
+                        <div class="col-md-3">
+                            <input asp-for="ThoiLuong" class="form-control" />
+                            <span asp-validation-for="ThoiLuong" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="Trailer" class="col-md-3">link trailer</label>
+                        <div class="col-md-9">
+                            <input asp-for="Trailer" class="form-control" />
+                            <span asp-validation-for="Trailer" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <label for="" class="col-md-2">Thể loại</label>
+                        <div class="col-md-8">
+                            @foreach (var tl in Model.DanhSachTheLoai)
+                            {
+                                var chon = "";
+                                if (Model.DanhSachTheLoaiId.Contains("," + tl.Id.ToString() + ","))
+                                {
+                                    chon = "checked";
+                                }
+                                <div class="col-md-4 col-sm-6 form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="DanhSachTheLoaiId" value="@tl.Id" @chon> @tl.Ten
+                                    </label>
+                                </div>
+                            }
+                            <span asp-validation-for="DanhSachTheLoaiId" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="DaoDien" class="col-md-2">Đạo diễn</label>
+                        <div class="col-md-8">
+                            <input asp-for="DaoDien" class="form-control" />
+                            <span asp-validation-for="DaoDien" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DienVien" class="col-md-2">Diễn viên</label>
+                        <div class="col-md-8">
+                            <input asp-for="DienVien" class="form-control" />
+                            <span asp-validation-for="DienVien" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="idxephangphim" class="col-md-2">Xếp hạng phim</label>
+                        <div class="col-md-8">
+                            <select name="XepHangPhimId" id="XepHangPhimId" class="form-control">
+                                @foreach (var xh in Model.DanhSachXepHangPhim)
+                                {
+                                    if (Model.XepHangPhimId == xh.Id)
+                                    {
+                                        <option value="@xh.Id" selected>@xh.Ten</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@xh.Id">@xh.Ten</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="XepHangPhimId" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoiDung" class="col-md-2">Nội dung phim</label>
+                        <div class="col-md-8">
+                            <textarea asp-for="NoiDung" rows="5" class="form-control"></textarea>
+                            <span asp-validation-for="NoiDung" class="text-danger"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Lưu thông tin phim</button>
+                        <a asp-area="Manage" asp-controller="Phim" asp-action="DanhSachPhim" class="btn btn-info"><i class="fa fa-arrow-circle-o-left"></i> Quay lại</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (!string.IsNullOrEmpty(Model.ThongBao))
+{
+    <div id="dialog-message" title="Thông báo">
+        <div style="margin: 10px 0;">
+            @Html.Raw(Model.ThongBao)
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#chonHinh, #imgThumbnail').click(function () {
+            $('#inputFile').click();
+        });
+        $("#dialog-message").dialog({
+            modal: true,
+            buttons: {
+                Ok: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+    //$("#ngaykhoichieu").datepicker({
+    //    dateFormat: "yy-mm-dd",
+    //    onSelect: function (datetext) {
+    //        $('#ngaykhoichieu').val(datetext);
+    //    }
+    //});
+    const inputFile = document.getElementById("inputFile");
+    const imgPreview = document.getElementById("imgThumbnail");
+    const post = document.getElementById("Poster");
+    inputFile.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.addEventListener("load", function () {
+                imgPreview.setAttribute("src", this.result);
+                var res = this.result.split(";base64,");
+                post.setAttribute("value", res[1]);
+            });
+            reader.readAsDataURL(file);
+        } else {
+            imgPreview.setAttribute("src", "/images/movie/movie-sample-180x260.jpg");
+            post.setAttribute("value", "");
+        }
+    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,91 @@
+﻿@model PhimModel.Output.ThongTinPhim
+@{
+    ViewData["Title"] = "Thông tin phim";
+}
+
+<style>
+    .navbar ul.navbar-nav a.nav-link {
+        font-size: 16px;
+    }
+
+    main {
+        padding-top: 55px;
+    }
+
+    .movie {
+        border: 1px solid;
+        box-shadow: 5px 6px #888888;
+        padding: 20px;
+    }
+
+        .movie .page-heading {
+            margin-top: 10px !important;
+        }
+
+    .movie__info .movie__time {
+        font-size: 14px;
+        font-weight: bold;
+    }
+</style>
+<!-- Main content -->
+<section class="container">
+    <div class="col-sm-12">
+        <div class="movie">
+            @if (Model != null && Model.Id > 0)
+            {
+                <h2 class="page-heading">@Model.TenPhim</h2>
+                <div class="movie__info">
+                    <div class="col-sm-4 col-md-3 movie-mobile" style="width: auto;">
+                        <div class="movie__images">
+                            <img alt='' src="data:image/png;base64, @Model.Poster">
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-md-9">
+                        <p class="movie__time">Thời lượng: @(Model.ThoiLuong == 0 ? "Chưa cập nhật" : Model.ThoiLuong.ToString() + " phút")</p>
+                        <p class="movie__option"><strong>Nước sản xuất: </strong><a href="#">@(string.IsNullOrEmpty(Model.NuocSanXuat) ? "Chưa cập nhật" : Model.NuocSanXuat)</a></p>
+                        <p class="movie__option"><strong>Hãng sản xuất: </strong><a href="#">@(string.IsNullOrEmpty(Model.NhaSanXuat) ? "Chưa cập nhật" : Model.NhaSanXuat)</a></p>
+                        <p class="movie__option">
+                            <strong>Thể loại: </strong>
+                            @for (int i = 0; i < Model.DanhSachTheLoai.Count; i++)
+                            {
+                                var tl = Model.DanhSachTheLoai[i];
+                                if (i > 0)
+                                {
+                                    <span>, </span><a href="#">@tl.Ten</a>
+                                }
+                                else
+                                {
+                                    <a href="#">@tl.Ten</a>
+                                }
+                            }
+                        </p>
+                        <p class="movie__option"><strong>Ngày khởi chiếu: </strong>@(Model.NgayKhoiChieu.ToString("yyyyMMdd").CompareTo("19000101") <=0 ? "Chưa cập nhật" : Model.NgayKhoiChieu.ToString("dd/MM/yyyy"))</p>
+                        <p class="movie__option"><strong>Đạo diễn: </strong><a href="#">@Model.DaoDien</a></p>
+                        <p class="movie__option"><strong>Diễn viên: </strong><a href="#">@Model.DienVien</a></p>
+                        <p class="movie__option"><strong>@Model.XepHangPhim.Ten</strong></p>
+
+                        <div class="movie__btns movie__btns--full">
+                            <a asp-area="Manage" asp-controller="Phim" asp-action="CapNhatPhim" asp-route-id="@Model.Id" class="btn btn-md btn--warning">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 16px;"></i> Edit
+                            </a>
+                            @if (!string.IsNullOrEmpty(@Model.Trailer))
+                            {
+                                <a href="#" class="watch-trailer btn-trailer" data-url="@Model.Trailer" data-title="@Model.TenPhim">Trailer</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <p></p>
+                <p class="movie__describe">@Model.NoiDung</p>
+            }
+            else
+            {
+                <h3>Thông tin phim không hợp lệ</h3>
+            }
+        </div>
+    </div>
+</section>
+
+<div class="clearfix"></div>

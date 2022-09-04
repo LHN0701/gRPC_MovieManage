@@ -1,0 +1,102 @@
+﻿@model SlideBannerModel.SlideBannerBase
+@{
+    ViewData["Title"] = "Thêm Slide Banner";
+}
+
+<style>
+    div#dialog-message p {
+        margin: 0;
+    }
+
+    .slide-info {
+        border: 1px solid;
+        box-shadow: 5px 6px #888888;
+        padding: 20px;
+        margin-top: 10%;
+    }
+
+        .slide-info .page-heading {
+            margin-top: 15px;
+        }
+</style>
+<div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+    <div class="slide-info">
+        <h2 class="page-heading">Thêm Slide Banner mới</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Ten" class="col-sm-5 col-md-3 control-label"></label>
+                <div class="col-sm-7 col-md-9">
+                    <input asp-for="Ten" class="form-control" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hinh" class="col-sm-5 col-md-3"></label>
+                <div class="col-sm-7 col-md-9">
+                    <input asp-for="Hinh" type="file" accept="image/*" class="form-control" />
+                    <img src="" id="imgThumbnail" class="img-responsive" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <label asp-for="LienKet" class="col-sm-5 col-md-3 control-label"></label>
+                <div class="col-sm-7 col-md-9">
+                    <input asp-for="LienKet" class="form-control" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-5 col-md-3">&nbsp;</label>
+                <div class="col-sm-7 col-md-9">
+                    <label asp-for="KichHoat"><input asp-for="KichHoat" style="appearance: auto;" /> Kích hoạt</label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Lưu thông tin</button>
+                <a asp-area="Manage" asp-controller="SlideBanner" asp-action="Index" class="btn btn-info"><i class="fa fa-arrow-circle-o-left"></i> Quay lại</a>
+            </div>
+            <div asp-validation-summary="All" class="col-sm-offset-5 col-sm-7 col-md-offset-3 col-md-9 text-danger font-weight-bold"></div>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
+@if (ViewData["ThongBao"] != null)
+{
+    <div id="dialog-message" title="Thông báo">
+        <div style="margin: 10px 0;">
+            @Html.Raw(ViewData["ThongBao"].ToString())
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#dialog-message").dialog({
+            modal: true,
+            buttons: {
+                Ok: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+    const inputFile = document.getElementById("Hinh");
+    const imgPreview = document.getElementById("imgThumbnail");
+    inputFile.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.addEventListener("load", function () {
+                imgPreview.setAttribute("src", this.result);
+                var res = this.result.split(";base64,");
+            });
+            reader.readAsDataURL(file);
+        } else {
+            imgPreview.setAttribute("src", "");
+        }
+    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

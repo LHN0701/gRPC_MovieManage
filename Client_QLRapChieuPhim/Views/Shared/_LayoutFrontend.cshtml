@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC Cinema @ViewData["Title"]</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body > div.container {
+            min-height: calc(100vh - 230px);
+        }
+    </style>
+    <link href="~/css/external/jquery.selectbox.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/jquery-ui/jquery-ui-1.12.1.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!-- Fonts -->
+    <!-- Font awesome - icon font -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Roboto -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,700' rel='stylesheet' type='text/css'>
+    <!-- Open Sans -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:800italic' rel='stylesheet' type='text/css'>
+
+    <!-- Stylesheets -->
+    <!-- Mobile menu -->
+    <link href="~/css/gozha-nav.css" rel="stylesheet" />
+    <!-- Select -->
+    <link href="~/css/external/jquery.selectbox.css" rel="stylesheet" />
+
+    <!-- Slider Revolution CSS Files -->
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/navigation.css">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="~/css/style.css?v=1" />
+
+    <!-- Modernizr -->
+    <script type="text/javascript" src="~/js/external/modernizr.custom.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>window.jQuery || document.write('<script src="~/js/external/jquery-3.1.1.min.js"><\/script>')</script>
+    <!-- Migrate -->
+    <script src="~/js/external/jquery-migrate-1.2.1.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap 3-->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+    <!-- Slider Revolution core JavaScript files -->
+    <script type="text/javascript" src="~/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- Slider Revolution extension scripts. -->
+
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+    <!-- Mobile menu -->
+    <script src="~/js/jquery.mobile.menu.js"></script>
+    <!-- Select -->
+    <script src="~/js/external/jquery.selectbox-0.2.min.js"></script>
+    <!-- Stars rate -->
+    <script src="~/js/external/jquery.raty.js"></script>
+    <!-- Form element -->
+    <script src="~/js/external/form-element.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .auth .auth__show {
+            padding-top: 16px;
+            padding-left: 22px;
+        }
+
+        .control-panel > .btn--book {
+            margin-right: 5px;
+        }
+
+        .footer-wrapper .nav-link {
+            padding: .5rem;
+            margin-bottom: 0px;
+        }
+
+            .footer-wrapper .nav-link .nav-link__item {
+                font-size: 13px;
+            }
+
+                .footer-wrapper .nav-link .nav-link__item:before {
+                    margin-right: 5px;
+                }
+
+        .footer-wrapper .footer-info {
+            padding-top: 30px;
+        }
+
+        .footer-wrapper .heading-special--small, .footer-info .heading-special--small {
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        .footer-wrapper .footer-info .heading-special--small {
+            float: none;
+            margin: 15px 10px;
+        }
+
+        @@media(min-width: 567px) {
+            .container.main-container {
+                padding-top: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header section -->
+    <header class="header-wrapper header-wrapper--home">
+        <div class="container">
+            <!-- Logo link-->
+            <a class="logo" asp-area="" asp-controller="Home" asp-action="Index">
+                <img alt='logo' src="/images/csc-cinema-logo.png">
+            </a>
+
+            <!-- Main website navigation-->
+            <nav id="navigation-box">
+                <!-- Toggle for mobile menu mode -->
+                <a href="#" id="navigation-toggle">
+                    <span class="menu-icon">
+                        <span class="icon-toggle" role="button" aria-label="Toggle Navigation">
+                            <span class="lines"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <!-- Link navigation -->
+                <ul id="navigation">
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Lịch chiếu</a>
+                    </li>
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a class="nav-link text-light" asp-area="" asp-controller="Phim" asp-action="PhimDangChieu">Phim</a>
+                        <ul>
+                            <li class="menu__nav-item"><a class="nav-link text-light" asp-area="" asp-controller="Phim" asp-action="PhimDangChieu">Phim đang chiếu</a></li>
+                            <li class="menu__nav-item"><a class="nav-link text-light" asp-area="" asp-controller="Phim" asp-action="PhimSapChieu">Phim sắp chiếu</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Sự kiện</a>
+                    </li>
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Rạp/Giá vé</a>
+                    </li>
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Thành viên</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Additional header buttons / Auth and direct link to booking-->
+            <div class="control-panel">
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </header>
+    <!-- End Header section -->
+    <!-- Body section -->
+    <div class="container main-container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- End Body section -->
+    <!-- Footer section -->
+    <footer class="footer-wrapper">
+        <section class="container">
+            <div class="col-xs-4 col-md-2 footer-nav">
+                <h4 class="heading-special--small">CSC Cinema</h4>
+                <ul class="nav-link">
+                    <li><a href="#" class="nav-link__item">Giới thiệu</a></li>
+                    <li><a href="#" class="nav-link__item">Liên hệ</a></li>
+                    <li><a href="#" class="nav-link__item">Chính sách bảo mật</a></li>
+                    <li><a href="#" class="nav-link__item">Hệ thống rạp</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-4 col-md-2 footer-nav">
+                <h4 class="heading-special--small">Góc điện ảnh</h4>
+                <ul class="nav-link">
+                    <li><a href="#" class="nav-link__item">Thể loại phim</a></li>
+                    <li><a href="#" class="nav-link__item">Bình luận phim</a></li>
+                    <li><a href="#" class="nav-link__item">Blog điện ảnh</a></li>
+                    <li><a href="#" class="nav-link__item">Phim hay trong tháng</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-4 col-md-2 footer-nav">
+                <h4 class="heading-special--small">Hỗ trợ</h4>
+                <ul class="nav-link">
+                    <li><a href="#" class="nav-link__item">Góp ý</a></li>
+                    <li><a href="#" class="nav-link__item">Rạp/Giá vé</a></li>
+                    <li><a href="#" class="nav-link__item">Câu hỏi thường gặp</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="footer-info">
+                    <h4 class="heading-special--small">Kết nối với CSC Cinema</h4>
+                    <div class="social">
+                        <a href='#' class="social__variant fa fa-facebook"></a>
+                        <a href='#' class="social__variant fa fa-twitter"></a>
+                        <a href='#' class="social__variant fa fa-vk"></a>
+                        <a href='#' class="social__variant fa fa-instagram"></a>
+                        <a href='#' class="social__variant fa fa-tumblr"></a>
+                        <a href='#' class="social__variant fa fa-pinterest"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <!-- End Footer section -->
+    <!-- open/close -->
+    <div class="overlay overlay-hugeinc @(TempData["ThongBaoLogin"] != null?"open":"")">
+
+        <section class="container">
+
+            <div class="col-sm-4 col-sm-offset-4">
+                <button type="button" class="overlay-close">Close</button>
+                <form id="login-form" asp-area="" asp-controller="ThanhVien" asp-action="DangNhap" class="login" method='post' novalidate=''>
+                    <p class="login__title">Đăng nhập <br><span class="login-edition">CSC Cinema</span></p>
+
+                    <div class="social social--colored">
+                        <a href='#' class="social__variant fa fa-facebook" title="Đăng nhập bằng Facebook"></a>
+                        <a href='#' class="social__variant fa fa-google" title="Đăng nhập bằng Google"></a>
+                    </div>
+
+                    <p class="login__tracker">Đăng nhập bằng tài khoản CSC Cinema</p>
+
+                    <div class="field-wrap">
+                        <input type='email' placeholder='Email' name='username' class="login__input">
+                        <input type='password' placeholder='Password' name='password' class="login__input">
+                        <label class="login__remember"><input type="checkbox" name="remenber" style="appearance: auto;" /> Ghi nhớ đăng nhập</label>
+                    </div>
+                    <div class="login__error">@(TempData["ThongBaoLogin"] != null? TempData["ThongBaoLogin"].ToString(): " ")</div>
+                    <div class="login__control">
+                        <button type='submit' class="btn btn-md btn--warning btn--wider">Đăng nhập</button>
+                        <a asp-area="" asp-controller="ThanhVien" asp-action="ForgotPassword" class="login__tracker form__tracker">Quên mật khẩu?</a>
+                        <a asp-area="" asp-controller="ThanhVien" asp-action="Register" class="login__tracker form__tracker">Đăng ký tài khoản.</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    <!-- Modal Trailler -->
+    <div class="overlay-trailer overlay-hugeinc">
+
+        <section class="container">
+
+            <div class="overlay-content col-xs-12 col-sm-8 col-sm-offset-2">
+                <button type="button" class="overlay-trailer-close">Close</button>
+                <div class="trailer-video">
+                    <p id="trailerTitle" class="trailer-title"></p>
+
+                    <p class="trailer-tracker">
+                        <iframe id="frameVideo" class="video" width="100%" height="100%" src="" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- End Modal Trailler -->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <!--Custom-->
+    <script type="text/javascript" src="~/js/custom.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            init_Home();
+        });
+
+        $('.btn-trailer').click(function (e) {
+            e.preventDefault();
+            $('#trailerTitle').html($(this).data('title'));
+            $('#frameVideo').attr("src", $(this).data('url'));
+            $('#frameVideo').attr("title", $(this).data('title'));
+            $('.overlay-trailer').removeClass('close').addClass('open');
+        });
+
+        $('.overlay-trailer-close').click(function (e) {
+            e.preventDefault;
+            $('#frameVideo').attr("src", "");
+            $('#frameVideo').attr("title", "");
+            $('.overlay-trailer').removeClass('open').addClass('close');
+            $('.overlay-trailer').removeClass('close');
+        });
+        $(".btn-register").click(function () {
+            $(location).attr('href', $(this).attr('href'));
+        });
+    </script>
+</body>
+</html>

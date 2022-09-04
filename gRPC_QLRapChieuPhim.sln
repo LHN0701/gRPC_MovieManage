@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gRPC_QLRapChieuPhim", "gRPC_QLRapChieuPhim\gRPC_QLRapChieuPhim.csproj", "{AE618EC2-3477-488B-8F82-8153528093B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client_QLRapChieuPhim", "Client_QLRapChieuPhim\Client_QLRapChieuPhim.csproj", "{5F8AC467-5257-40C3-94B6-B53422867609}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE618EC2-3477-488B-8F82-8153528093B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE618EC2-3477-488B-8F82-8153528093B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE618EC2-3477-488B-8F82-8153528093B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE618EC2-3477-488B-8F82-8153528093B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F8AC467-5257-40C3-94B6-B53422867609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F8AC467-5257-40C3-94B6-B53422867609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F8AC467-5257-40C3-94B6-B53422867609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F8AC467-5257-40C3-94B6-B53422867609}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1CC5CD3-6527-42C4-95C1-D0FC0C295CC6}
+	EndGlobalSection
+EndGlobal

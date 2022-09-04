@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC Cinema @ViewData["Title"]</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body > div.container {
+            min-height: calc(100vh - 100px);
+        }
+    </style>
+    <link href="~/css/external/jquery.selectbox.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/css/jquery-ui/jquery-ui-1.12.1.css" />
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <!-- Fonts -->
+    <!-- Font awesome - icon font -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Roboto -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,700' rel='stylesheet' type='text/css'>
+    <!-- Open Sans -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:800italic' rel='stylesheet' type='text/css'>
+
+    <!-- Stylesheets -->
+    <!-- Mobile menu -->
+    <link href="~/css/gozha-nav.css" rel="stylesheet" />
+    <!-- Select -->
+    <link href="~/css/external/jquery.selectbox.css" rel="stylesheet" />
+
+    <!-- Slider Revolution CSS Files -->
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/navigation.css">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="~/css/style.css?v=1" />
+
+    <!-- Modernizr -->
+    <script type="text/javascript" src="~/js/external/modernizr.custom.js"></script>
+
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>window.jQuery || document.write('<script src="~/js/external/jquery-3.1.1.min.js"><\/script>')</script>
+    <!-- Migrate -->
+    <script src="~/js/external/jquery-migrate-1.2.1.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap 3-->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+    <!-- Slider Revolution core JavaScript files -->
+    <script type="text/javascript" src="~/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- Slider Revolution extension scripts. -->
+
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+    <!-- Mobile menu -->
+    <script src="~/js/jquery.mobile.menu.js"></script>
+    <!-- Select -->
+    <script src="~/js/external/jquery.selectbox-0.2.min.js"></script>
+    <!-- Stars rate -->
+    <script src="~/js/external/jquery.raty.js"></script>
+    <!-- Form element -->
+    <script src="~/js/external/form-element.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .auth .auth__show {
+            padding-top: 16px;
+            padding-left: 22px;
+        }
+
+        .control-panel > .btn--book {
+            margin-right: 5px;
+        }
+
+        .footer-wrapper .nav-link {
+            padding: .5rem;
+            margin-bottom: 0px;
+        }
+
+            .footer-wrapper .nav-link .nav-link__item {
+                font-size: 13px;
+            }
+
+                .footer-wrapper .nav-link .nav-link__item:before {
+                    margin-right: 5px;
+                }
+
+        .footer-wrapper .footer-info {
+            padding-top: 30px;
+        }
+
+        .footer-wrapper .heading-special--small, .footer-info .heading-special--small {
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        .footer-wrapper .footer-info .heading-special--small {
+            float: none;
+            margin: 15px 10px;
+        }
+
+        @@media(min-width: 567px) {
+            .container.main-container {
+                padding-top: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header section -->
+    <header class="header-wrapper header-wrapper--home">
+        <div class="container">
+            <!-- Logo link-->
+            <a class="logo" asp-area="" asp-controller="Home" asp-action="Index">
+                <img alt='logo' src="/images/csc-cinema-logo.png">
+            </a>
+
+            <!-- Main website navigation-->
+            <nav id="navigation-box">
+                <!-- Toggle for mobile menu mode -->
+                <a href="#" id="navigation-toggle">
+                    <span class="menu-icon">
+                        <span class="icon-toggle" role="button" aria-label="Toggle Navigation">
+                            <span class="lines"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <!-- Link navigation -->
+                <ul id="navigation">
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a class="nav-link text-light" asp-area="Manage" asp-controller="Phim" asp-action="DanhSachPhim">Quản lý phim</a>
+                    </li>
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a class="nav-link text-light" asp-area="" asp-controller="LichChieu" asp-action="DanhSachLichChieu">Suất chiếu/Lịch chiếu</a>
+                        <ul>
+                            <li class="menu__nav-item"><a asp-area="Manage" asp-controller="LichChieu" asp-action="DanhSachSuatChieu">Suất chiếu</a></li>
+                            <li class="menu__nav-item"><a asp-area="Manage" asp-controller="LichChieu" asp-action="DanhSachLichChieu">Lịch chiếu</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Rạp/Giá vé</a>
+                    </li>
+                    <li>
+                        <span class="sub-nav-toggle plus"></span>
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Quản lý website</a>
+                        <ul>
+                            <li class="menu__nav-item"><a asp-area="Manage" asp-controller="SlideBanner" asp-action="Index">Slide Banner</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Additional header buttons / Auth and direct link to booking-->
+            <div class="control-panel">
+                <partial name="_LoginBackendPartial" />
+            </div>
+        </div>
+    </header>
+    <!-- End Header section -->
+    <!-- Body section -->
+    <div class="container main-container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- End Body section -->
+    <!-- Footer section -->
+    <footer class="footer-wrapper">
+        <section class="container">
+            <div class="footer-nav">
+                <div style="font-weight: bold; padding: 10px 0;">Copyright @@ CSC Cinema</div>
+            </div>
+        </section>
+    </footer>
+    <!-- End Footer section -->
+    <!-- Modal Trailler -->
+    <div class="overlay-trailer overlay-hugeinc">
+
+        <section class="container">
+
+            <div class="overlay-content col-xs-12 col-sm-8 col-sm-offset-2">
+                <button type="button" class="overlay-trailer-close">Close</button>
+                <div class="trailer-video">
+                    <p id="trailerTitle" class="trailer-title"></p>
+
+                    <p class="trailer-tracker">
+                        <iframe id="frameVideo" class="video" width="100%" height="100%" src="" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <!--Custom-->
+    <script type="text/javascript" src="~/js/custom.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            init_Home();
+
+            $('.btn-trailer').click(function (e) {
+                e.preventDefault();
+                $('#trailerTitle').html($(this).data('title'));
+                $('#frameVideo').attr("src", $(this).data('url'));
+                $('#frameVideo').attr("title", $(this).data('title'));
+                $('.overlay-trailer').removeClass('close').addClass('open');
+            });
+
+            $('.overlay-trailer-close').click(function (e) {
+                e.preventDefault;
+                $('#frameVideo').attr("src", "");
+                $('#frameVideo').attr("title", "");
+                $('.overlay-trailer').removeClass('open').addClass('close');
+                $('.overlay-trailer').removeClass('close');
+            });
+        });
+    </script>
+</body>
+</html>
